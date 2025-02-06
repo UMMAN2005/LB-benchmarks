@@ -1,0 +1,11 @@
+http:
+  routers:
+    backend:
+      rule: "PathPrefix(`/`)"
+      service: backend_servers
+  services:
+    backend_servers:
+      loadBalancer:
+        servers:
+          - url: "http://172.31.11.241:80"
+          - url: "http://172.31.14.106:80"
