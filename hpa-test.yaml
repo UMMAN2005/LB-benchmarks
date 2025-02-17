@@ -6,7 +6,7 @@ metadata:
   labels:
     app: my-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: my-app
@@ -54,20 +54,20 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: my-app
-  minReplicas: 3
-  maxReplicas: 12
+  minReplicas: 1
+  maxReplicas: 6
   behavior:
     scaleUp:
       stabilizationWindowSeconds: 0
       policies:
         - type: Pods
-          value: 3
+          value: 1
           periodSeconds: 5
     scaleDown:
       stabilizationWindowSeconds: 60
       policies:
         - type: Pods
-          value: 2
+          value: 1
           periodSeconds: 30
   metrics:
     - type: Resource
@@ -75,7 +75,7 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 40
     - type: Resource
       resource:
         name: memory
